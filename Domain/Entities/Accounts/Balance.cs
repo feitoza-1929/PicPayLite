@@ -1,8 +1,8 @@
 namespace PicPayLite.Domain.Accounts
 {
-    public struct Balance 
+    public class Balance 
     {
-        string Currency;
-        float Amount;
+        public string Currency { get; set; }
+        public float Amount { get; set; }
     }
 }
