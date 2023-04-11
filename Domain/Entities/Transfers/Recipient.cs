@@ -5,8 +5,8 @@ namespace PicPayLite.Domain.Tranfers
 {
     public class Recipient
     {
-        public Account Account { get; private set; }
+        public Document Document { get; private set; }
+        public int AccountNumber { get; private set; }
         public string Name { get; private set; }
-        public ClientType Type { get; private set; }
     }
 }
