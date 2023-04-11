@@ -50,6 +50,19 @@
           "lib/net6.0/EmailValidation.dll": {}
         }
       },
+      "FluentResults/3.15.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
+          "System.Threading.Tasks.Extensions": "4.5.4"
+        },
+        "compile": {
+          "lib/netstandard2.1/FluentResults.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/FluentResults.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/7.0.0-preview.6.22330.3": {
         "type": "package",
         "dependencies": {
@@ -1116,6 +1129,22 @@
         "lib/netstandard2.0/EmailValidation.xml",
         "lib/netstandard2.1/EmailValidation.dll",
         "lib/netstandard2.1/EmailValidation.xml"
+      ]
+    },
+    "FluentResults/3.15.2": {
+      "sha512": "yR3PD1SWKirYNpQ/t9TjJrsp1adazMmozLDPeamvSIljLAIjS0EQyyGvoupWsbZEryqW9SHbKXVL8YaJwURk8w==",
+      "type": "package",
+      "path": "fluentresults/3.15.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "FluentResults-Icon-128.png",
+        "fluentresults.3.15.2.nupkg.sha512",
+        "fluentresults.nuspec",
+        "lib/netstandard2.0/FluentResults.dll",
+        "lib/netstandard2.0/FluentResults.xml",
+        "lib/netstandard2.1/FluentResults.dll",
+        "lib/netstandard2.1/FluentResults.xml"
       ]
     },
     "Microsoft.AspNetCore.OpenApi/7.0.0-preview.6.22330.3": {
@@ -4004,6 +4033,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "EmailValidation >= 1.0.8",
+      "FluentResults >= 3.15.2",
       "Microsoft.AspNetCore.OpenApi >= 7.0.0-preview.6.22330.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.4",
       "Swashbuckle.AspNetCore >= 6.2.3"
@@ -4049,6 +4079,10 @@
           "EmailValidation": {
             "target": "Package",
             "version": "[1.0.8, )"
+          },
+          "FluentResults": {
+            "target": "Package",
+            "version": "[3.15.2, )"
           },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
