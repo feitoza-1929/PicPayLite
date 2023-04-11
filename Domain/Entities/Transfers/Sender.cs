@@ -1,5 +1,4 @@
-using System.Reflection.Metadata;
-using PicPayLite.Domain.Accounts;
+using PicPayLite.Domain.Clients;
 
 namespace PicPayLite.Domain.Tranfers
 {

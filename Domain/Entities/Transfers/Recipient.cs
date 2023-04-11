@@ -1,4 +1,3 @@
-using PicPayLite.Domain.Accounts;
 using PicPayLite.Domain.Clients;
 
 namespace PicPayLite.Domain.Tranfers

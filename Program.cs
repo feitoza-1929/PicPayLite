@@ -17,14 +17,16 @@ builder.Host.ConfigureServices(services =>
     services.AddControllers();
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
+    services.AddRouting(options => options.LowercaseUrls = true);
     
     // DbContext
     services.AddDbContext<ApplicationDbContext>(
         options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         
     // Repositories
-    services.AddScoped<IClientRepository, ClientRepository>();
-    services.AddScoped<IAccountRepository, AccountRepository>();
+    services.AddTransient<IClientRepository, ClientRepository>();
+    services.AddTransient<IAccountRepository, AccountRepository>();
+    services.AddTransient<ITransferRepository, TransferRepository>();
 
     // Handles
     services.AddScoped<IClientCreateHandleAsync, ClientCreateHandleAsync>();
