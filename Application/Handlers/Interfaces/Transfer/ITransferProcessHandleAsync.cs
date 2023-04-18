@@ -1,7 +1,7 @@
 using FluentResults;
 using PicPayLite.Presentation.RequestsPattern;
 
-namespace PicPayLite.Application.Handlers
+namespace PicPayLite.Application.Handlers.Interfaces
 {
     public interface ITransferProcessHandleAsync
     {

@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using PicPayLite.Application.Handlers;
+using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Repositories;
 using PicPayLite.Infrastructure;
 using PicPayLite.Infrastructure.API;
-using PicPayLite.Infrastructure.Configurations;
-using PicPayLite.Infrastructure.Configurations.Options;
+using PicPayLite.Infrastructure.Options;
 using PicPayLite.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +21,7 @@ builder.Host.ConfigureServices(services =>
     
     // DbContext
     services.AddDbContext<ApplicationDbContext>(
-        options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
         
     // Repositories
     services.AddTransient<IClientRepository, ClientRepository>();
@@ -34,6 +34,8 @@ builder.Host.ConfigureServices(services =>
     services.AddScoped<ITransferProcessHandleAsync, TransferProcessHandleAsync>();
     services.AddScoped<ITransferCreateHandleAsync, TransferCreateHandleAsync>();
     services.AddScoped<ITransferAmountHandleAsync, TransferAmountHandleAsync>();
+
+    
 
     services.Configure<RequestURIOptions>(
         options => configuration.GetSection(RequestURIOptions.RequestURI).Bind(options));

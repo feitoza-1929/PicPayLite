@@ -80,3 +80,13 @@
 /home/feitoza/Sources/projects/PicPayLite/obj/Debug/net7.0/PicPayLite.genruntimeconfig.cache
 /home/feitoza/Sources/projects/PicPayLite/obj/Debug/net7.0/ref/PicPayLite.dll
 /home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/FluentResults.dll
+/home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/Humanizer.dll
+/home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
+/home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
+/home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/Mono.TextTemplating.dll
+/home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/System.CodeDom.dll
+/home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/System.Text.Encodings.Web.dll
+/home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/System.Text.Json.dll
+/home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/runtimes/browser/lib/net7.0/System.Text.Encodings.Web.dll
+/home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/Npgsql.dll
+/home/feitoza/Sources/projects/PicPayLite/bin/Debug/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll

@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Microsoft.Extensions.Options;
-using PicPayLite.Infrastructure.Configurations.Options;
+using PicPayLite.Infrastructure.Options;
+using PicPayLite.Infrastructure.Options;
 
 namespace PicPayLite.Infrastructure.API
 {

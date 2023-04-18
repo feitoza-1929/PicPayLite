@@ -1,4 +1,5 @@
 using FluentResults;
+using PicPayLite.Domain.Clients;
 using PicPayLite.Domain.Errors;
 
 namespace PicPayLite.Domain.Accounts
@@ -9,13 +10,18 @@ namespace PicPayLite.Domain.Accounts
         public Guid ClientId { get; private set; }
         public int Number { get; private set; }
         public Balance Balance { get; private set;}
+        public Client Client { get; private set; }
 
-        private Account(Guid clientId, int number, Balance balance)
+        private Account(Guid clientId, int number, Balance balance) 
+        : this(clientId, number)
         {
-            Id = new Guid();
+            Balance = balance;
+        }
+
+        private Account(Guid clientId, int number)
+        {
             ClientId = clientId;
             Number = number;
-            Balance = balance;
         }
 
         public static Account Create(Guid clientId, int number, Balance balance)

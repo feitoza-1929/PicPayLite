@@ -8,10 +8,15 @@ namespace PicPayLite.Domain.Tranfers
         public Recipient Recipient { get; private set; }
 
         private Transfer(float amount, Sender sender, Recipient recipient)
+        : this(amount)
         {
-            Amount = amount;
             Sender = sender;
             Recipient = recipient;
+        }
+
+        private Transfer(float amount)
+        {
+            Amount = amount;
         }
 
         public static Transfer Create(float amount, Sender sender, Recipient recipient)

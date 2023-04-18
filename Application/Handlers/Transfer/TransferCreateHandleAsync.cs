@@ -1,4 +1,5 @@
 using FluentResults;
+using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Application.Helpers;
 using PicPayLite.Domain.Clients;
 using PicPayLite.Domain.Errors;

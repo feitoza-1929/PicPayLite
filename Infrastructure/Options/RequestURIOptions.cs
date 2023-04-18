@@ -1,4 +1,4 @@
-namespace PicPayLite.Infrastructure.Configurations.Options
+namespace PicPayLite.Infrastructure.Options
 {
     public class RequestURIOptions
     {

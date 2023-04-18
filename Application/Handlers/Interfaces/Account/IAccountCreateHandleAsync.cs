@@ -2,7 +2,7 @@ using FluentResults;
 using PicPayLite.Domain.Accounts;
 using PicPayLite.Presentation.RequestsPattern;
 
-namespace PicPayLite.Application.Handlers
+namespace PicPayLite.Application.Handlers.Interfaces
 {
     public interface IAccountCreateHandleAsync
     {

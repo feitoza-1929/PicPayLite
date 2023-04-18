@@ -1,6 +1,7 @@
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using PicPayLite.Application.Handlers;
+using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Clients;
 using PicPayLite.Presentation.RequestsPattern;
 
@@ -28,7 +29,7 @@ public class ClientController : ControllerBase
 
         return result.IsSuccess
         ? Ok()
-        : BadRequest(result.Errors.First());
+        : BadRequest(result.Errors.FirstOrDefault());
     }
 
     [HttpGet("Token")]

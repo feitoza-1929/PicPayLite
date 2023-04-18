@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using PicPayLite.Domain.Accounts;
 using PicPayLite.Domain.Clients;
 using PicPayLite.Domain.Tranfers;
+using PicPayLite.Infrastructure.ModelsConfigurations;
 
 namespace PicPayLite.Infrastructure
 {
@@ -14,6 +15,15 @@ namespace PicPayLite.Infrastructure
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ClientModelConfiguration());
+            modelBuilder.ApplyConfiguration(new AccountModelConfiguration());
+            modelBuilder.ApplyConfiguration(new TransferModelConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

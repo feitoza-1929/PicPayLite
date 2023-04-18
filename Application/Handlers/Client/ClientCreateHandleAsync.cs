@@ -1,5 +1,5 @@
-
 using FluentResults;
+using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Application.Helpers;
 using PicPayLite.Domain.Clients;
 using PicPayLite.Domain.Errors;
@@ -24,11 +24,16 @@ namespace PicPayLite.Application.Handlers
 
         public async Task<Result<Client>> CreateAsync(CreateClientRequest data)
         {
-            Client client = Client.Create(data.Name, data.Email, data.Type, data.Document);
+            if(await _dbContext.Database.CanConnectAsync())
+            {
+                Console.WriteLine("Connected to database\n");
+            }
 
+            Client client = Client.Create(data.Name, data.Email, data.Type, data.Document);
+            
             bool clientAlreadyExist = await ClientHelper.ValidateClientExist(client.Document.value);
 
-            if(clientAlreadyExist)
+            if (clientAlreadyExist)
                 return Result.Fail(DomainErrors.Clients.ClientAlreadyExist);
 
             _clientRepository.Add(client);

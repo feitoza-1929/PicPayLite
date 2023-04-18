@@ -34,11 +34,13 @@ namespace PicPayLite.Infrastructure.Repositories
         public async Task<Client> GetClientByDocument(string documentNumber)
         {
             IEnumerable<Client> data = await _dbContext.Clients
-                .Where(client => client.Document.value == documentNumber)
-                .Select(client => client)
-                .ToListAsync();
-                
-            return data.FirstOrDefault();
+            .Where(client => client.Document.value == documentNumber)
+            .ToListAsync();
+
+            if(data is null)
+                throw new NullReferenceException("try to fetch client data by document, but is null");
+
+            return data.First();
         }
     }
 }

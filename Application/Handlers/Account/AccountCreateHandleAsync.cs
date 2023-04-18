@@ -1,4 +1,5 @@
 using FluentResults;
+using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Application.Helpers;
 using PicPayLite.Domain.Accounts;
 using PicPayLite.Domain.Errors;
@@ -28,7 +29,7 @@ namespace PicPayLite.Application.Handlers
                 return Result.Fail(DomainErrors.Clients.ClientNotFound);
 
             int accountNumber = new Random().Next(1000, 9999);
-            Balance balance = new Balance {Currency = defaultCurrency, Amount = defaultAmount };
+            Balance balance = new Balance(defaultCurrency, defaultAmount);
             Account account = Account.Create(data.ClientId, accountNumber, balance);
 
             _accountRepository.Add(account);

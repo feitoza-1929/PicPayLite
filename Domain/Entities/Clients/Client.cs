@@ -1,3 +1,5 @@
+using PicPayLite.Domain.Accounts;
+
 namespace PicPayLite.Domain.Clients
 {
     public class Client
@@ -7,18 +9,19 @@ namespace PicPayLite.Domain.Clients
         public string Email { get; private set; } = string.Empty;
         public ClientType Type { get; private set; }
         public Document Document { get; private set; }
+        public Account Account { get; private set; }
 
-        private Client(
-            string name, 
-            string email, 
-            ClientType type, 
-            Document document)
+        private Client(string name, string email, ClientType type, Document document)
+        : this(name, email, type)
         {
-            Id = new Guid();
+            Document = document;
+        }
+
+        private Client(string name, string email, ClientType type)
+        {
             Name = name;
             Email = email;
             Type = type;
-            Document = document;
         }
 
         public static Client Create(

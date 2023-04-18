@@ -1,13 +1,14 @@
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using PicPayLite.Application.Handlers;
+using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Accounts;
 using PicPayLite.Presentation.RequestsPattern;
 
 namespace PicPayLite.Presentation.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class AccountController : ControllerBase
 {
     private readonly ILogger<ClientController> _logger;
