@@ -31,13 +31,13 @@ namespace PicPayLite.Application.Handlers
 
             Client client = Client.Create(data.Name, data.Email, data.Type, data.Document);
             
-            bool clientAlreadyExist = await ClientHelper.ValidateClientExist(client.Document.value);
+            // bool clientAlreadyExist = await ClientHelper.ValidateClientExist(client.Document.value);
 
-            if (clientAlreadyExist)
-                return Result.Fail(DomainErrors.Clients.ClientAlreadyExist);
+            // if (clientAlreadyExist)
+            //     return Result.Fail(DomainErrors.Clients.ClientAlreadyExist);
 
-            _clientRepository.Add(client);
-            await _dbContext.SaveChangesAsync();
+            // _clientRepository.Add(client);
+            // await _dbContext.SaveChangesAsync();
 
             return Result.Ok(client);
         }
