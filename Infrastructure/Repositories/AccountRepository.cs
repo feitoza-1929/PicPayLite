@@ -22,24 +22,24 @@ namespace PicPayLite.Infrastructure.Repositories
             _dbContext.Accounts.Remove(data);
         }
 
-        public async Task<Account> GetAccountById(Guid id)
+        public List<Account> GetAccountById(Guid id)
         {
-            IEnumerable<Account> data = await _dbContext.Accounts
+            List<Account> data = _dbContext.Accounts
                 .Where(account => account.Id == id)
                 .Select(account => account)
-                .ToListAsync();
+                .ToList();
 
-            return data.FirstOrDefault();
+            return data;
         }
 
-        public async Task<Account> GetAccountByNumber(int number)
+        public List<Account> GetAccountByNumber(int number)
         {
-            IEnumerable<Account> data = await _dbContext.Accounts
+            List<Account> data = _dbContext.Accounts
                 .Where(account => account.Number == number)
                 .Select(account => account)
-                .ToListAsync();
+                .ToList();
 
-            return data.FirstOrDefault();
+            return data;
         }
     }
 }

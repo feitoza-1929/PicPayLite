@@ -12,12 +12,12 @@ namespace PicPayLite.Application.Helpers
             _clientRepository = clientRepository;
         }
 
-        public async static Task<bool> ValidateClientExist(string documentNumber)
+        public static bool ValidateClientExist(string documentNumber)
         {
             if(documentNumber is null)
                 throw new NullReferenceException($"the documentoNumber for validate client is null");
                 
-            Client data = await _clientRepository.GetClientByDocument(documentNumber);
+            Client data = _clientRepository.GetClientByDocument(documentNumber).First();
 
             return data == null
             ? false

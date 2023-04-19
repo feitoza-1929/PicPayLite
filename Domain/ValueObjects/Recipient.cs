@@ -1,8 +1,6 @@
-using PicPayLite.Domain.Clients;
-
-namespace PicPayLite.Domain.Tranfers
+namespace PicPayLite.Domain.ValueObjects
 {
-    public class Sender
+    public class Recipient
     {
         public Document Document { get; private set; }
         public int AccountNumber { get; private set; }

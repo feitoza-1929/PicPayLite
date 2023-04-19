@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using PicPayLite.Domain.Clients;
+using PicPayLite.Domain.ValueObjects;
 
 namespace PicPayLite.Presentation.RequestsPattern
 {

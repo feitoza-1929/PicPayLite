@@ -12,9 +12,9 @@ namespace PicPayLite.Application.Helpers
             _accountRepository = accountRepository;
         }
 
-        public async static Task<bool> ValidateAccountExist(int accountNumber)
+        public static bool ValidateAccountExist(int accountNumber)
         {
-            Account data = await _accountRepository.GetAccountByNumber(accountNumber);
+            Account data = _accountRepository.GetAccountByNumber(accountNumber).First();
 
             return data == null
             ? false

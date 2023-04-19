@@ -13,15 +13,15 @@ builder.Host.ConfigureServices(services =>
 {
     var configuration = builder.Configuration;
 
+    // DbContext
+    services.AddDbContext<ApplicationDbContext>(
+        options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
     services.AddHttpClient();
     services.AddControllers();
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
     services.AddRouting(options => options.LowercaseUrls = true);
-    
-    // DbContext
-    services.AddDbContext<ApplicationDbContext>(
-        options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
         
     // Repositories
     services.AddTransient<IClientRepository, ClientRepository>();

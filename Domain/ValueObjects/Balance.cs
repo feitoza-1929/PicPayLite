@@ -1,4 +1,4 @@
-namespace PicPayLite.Domain.Accounts
+namespace PicPayLite.Domain.ValueObjects
 {
     public class Balance 
     {

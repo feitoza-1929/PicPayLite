@@ -24,11 +24,6 @@ namespace PicPayLite.Application.Handlers
 
         public async Task<Result<Client>> CreateAsync(CreateClientRequest data)
         {
-            if(await _dbContext.Database.CanConnectAsync())
-            {
-                Console.WriteLine("Connected to database\n");
-            }
-
             Client client = Client.Create(data.Name, data.Email, data.Type, data.Document);
             
             // bool clientAlreadyExist = await ClientHelper.ValidateClientExist(client.Document.value);

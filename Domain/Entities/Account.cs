@@ -1,6 +1,7 @@
 using FluentResults;
 using PicPayLite.Domain.Clients;
 using PicPayLite.Domain.Errors;
+using PicPayLite.Domain.ValueObjects;
 
 namespace PicPayLite.Domain.Accounts
 {

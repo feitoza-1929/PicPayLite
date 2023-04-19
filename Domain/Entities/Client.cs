@@ -1,4 +1,5 @@
 using PicPayLite.Domain.Accounts;
+using PicPayLite.Domain.ValueObjects;
 
 namespace PicPayLite.Domain.Clients
 {

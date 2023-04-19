@@ -4,7 +4,7 @@ namespace PicPayLite.Domain.Repositories
 {
     public interface IClientRepository : IRepository<Client>
     {
-        Task<Client> GetClientById(Guid id);
-        Task<Client> GetClientByDocument(string documentNumber);
+        List<Client> GetClientById(Guid id);
+        List<Client> GetClientByDocument(string documentNumber);
     }
 }

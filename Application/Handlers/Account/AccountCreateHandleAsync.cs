@@ -4,6 +4,7 @@ using PicPayLite.Application.Helpers;
 using PicPayLite.Domain.Accounts;
 using PicPayLite.Domain.Errors;
 using PicPayLite.Domain.Repositories;
+using PicPayLite.Domain.ValueObjects;
 using PicPayLite.Infrastructure;
 using PicPayLite.Presentation.RequestsPattern;
 
@@ -24,7 +25,7 @@ namespace PicPayLite.Application.Handlers
 
         public async Task<Result<Account>> CreateAsync(CreateAccountRequest data)
         {
-            bool clientExist = await ClientHelper.ValidateClientExist(data.Document.value);
+            bool clientExist = ClientHelper.ValidateClientExist(data.Document.value);
             if(clientExist is false)
                 return Result.Fail(DomainErrors.Clients.ClientNotFound);
 

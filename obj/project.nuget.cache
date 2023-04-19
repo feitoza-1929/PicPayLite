@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lh/Agg01mxFK2d4C1e0UctPlx792a1DyfKEWzY09mM3ptj60w1DpKrp3bLnYUCU9s5yqk4pYIDNxMjkprwcgqQ==",
+  "dgSpecHash": "b/wwnvTFWSvNCnETxFghvOo4jadmwXJeUh8okII43KsKlNal3Ae0ADikZDJqBxnuo1reoP25j0cYwyTKNZcszQ==",
   "success": true,
   "projectFilePath": "/home/feitoza/Sources/projects/PicPayLite/PicPayLite.csproj",
   "expectedPackageFiles": [
@@ -19,7 +19,7 @@
     "/home/feitoza/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.5/microsoft.entityframeworkcore.analyzers.7.0.5.nupkg.sha512",
     "/home/feitoza/.nuget/packages/microsoft.entityframeworkcore.design/7.0.5/microsoft.entityframeworkcore.design.7.0.5.nupkg.sha512",
     "/home/feitoza/.nuget/packages/microsoft.entityframeworkcore.relational/7.0.5/microsoft.entityframeworkcore.relational.7.0.5.nupkg.sha512",
-    "/home/feitoza/.nuget/packages/microsoft.entityframeworkcore.sqlserver/7.0.4/microsoft.entityframeworkcore.sqlserver.7.0.4.nupkg.sha512",
+    "/home/feitoza/.nuget/packages/microsoft.entityframeworkcore.sqlserver/7.0.5/microsoft.entityframeworkcore.sqlserver.7.0.5.nupkg.sha512",
     "/home/feitoza/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/home/feitoza/.nuget/packages/microsoft.extensions.caching.abstractions/7.0.0/microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "/home/feitoza/.nuget/packages/microsoft.extensions.caching.memory/7.0.0/microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",

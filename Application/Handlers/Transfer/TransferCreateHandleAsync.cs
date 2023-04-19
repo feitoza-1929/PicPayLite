@@ -28,8 +28,8 @@ namespace PicPayLite.Application.Handlers
 
         public async Task<Result<Transfer>> CreateAsync(TransferAmountRequest data)
         {
-            bool recipientAccountExist = await AccountHelper.ValidateAccountExist(data.Recipient.AccountNumber);
-            bool senderAccountExist = await AccountHelper.ValidateAccountExist(data.Recipient.AccountNumber);
+            bool recipientAccountExist = AccountHelper.ValidateAccountExist(data.Recipient.AccountNumber);
+            bool senderAccountExist = AccountHelper.ValidateAccountExist(data.Recipient.AccountNumber);
 
             if(recipientAccountExist is false && senderAccountExist is false)
                 return Result.Fail(DomainErrors.Accounts.AccountNotFound);

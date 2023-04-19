@@ -1,3 +1,5 @@
+using PicPayLite.Domain.ValueObjects;
+
 namespace PicPayLite.Domain.Tranfers
 {
     public class Transfer

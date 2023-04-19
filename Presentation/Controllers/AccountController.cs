@@ -1,6 +1,5 @@
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
-using PicPayLite.Application.Handlers;
 using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Accounts;
 using PicPayLite.Presentation.RequestsPattern;

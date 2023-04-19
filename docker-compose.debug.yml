@@ -1,6 +1,6 @@
 # Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
 
-version: '3.4'
+version: '3.5'
 
 services:
   picpaylite:
@@ -14,12 +14,30 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
+    depends_on:
+      - db
+    networks:
+      - my_network
+    
   db:
     image: postgres:12-alpine
     restart: always
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
+      PGUSER: postgres
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: picpaylite_db
     ports:
       - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s  
+    networks:
+      - my_network
+networks:
+  my_network:
+    name: custom_network
+    external: true
+

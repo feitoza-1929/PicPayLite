@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using PicPayLite.Domain.Tranfers;
+using PicPayLite.Domain.ValueObjects;
 
 namespace PicPayLite.Presentation.RequestsPattern
-{ 
+{
     public record TransferAmountRequest
     {
         [Required]

@@ -33,8 +33,15 @@ namespace PicPayLite.Application.Handlers
 
         public async Task<Result> TransferAsync(Transfer transfer)
         {
-            Account recipientAccount = await _accountRepository.GetAccountByNumber(transfer.Recipient.AccountNumber);
-            Account senderAccount = await _accountRepository.GetAccountByNumber(transfer.Sender.AccountNumber);
+            Account recipientAccount = 
+                _accountRepository
+                .GetAccountByNumber(transfer.Recipient.AccountNumber)
+                .First();
+
+            Account senderAccount = 
+                _accountRepository
+                .GetAccountByNumber(transfer.Sender.AccountNumber)
+                .First();
 
             Result<float> resultWithdraw = senderAccount.Withdraw(transfer.Amount);
 
