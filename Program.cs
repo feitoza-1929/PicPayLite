@@ -9,40 +9,37 @@ using PicPayLite.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.ConfigureServices(services =>
-{
-    var configuration = builder.Configuration;
+var configuration = builder.Configuration;
 
-    services.AddHttpClient();
-    services.AddControllers();
-    services.AddEndpointsApiExplorer();
-    services.AddSwaggerGen();
-    services.AddRouting(options => options.LowercaseUrls = true);
+builder.Services.AddHttpClient();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
     
-    // DbContext
-    services.AddDbContext<ApplicationDbContext>(
-        options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+// DbContext
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
         
-    // Repositories
-    services.AddTransient<IClientRepository, ClientRepository>();
-    services.AddTransient<IAccountRepository, AccountRepository>();
-    services.AddTransient<ITransferRepository, TransferRepository>();
+// Repositories
+builder.Services.AddTransient<IClientRepository, ClientRepository>();
+builder.Services.AddTransient<IAccountRepository, AccountRepository>();
+builder.Services.AddTransient<ITransferRepository, TransferRepository>();
 
-    // Handles
-    services.AddScoped<IClientCreateHandleAsync, ClientCreateHandleAsync>();
-    services.AddScoped<IAccountCreateHandleAsync, AccountCreateHandleAsync>();
-    services.AddScoped<ITransferProcessHandleAsync, TransferProcessHandleAsync>();
-    services.AddScoped<ITransferCreateHandleAsync, TransferCreateHandleAsync>();
-    services.AddScoped<ITransferAmountHandleAsync, TransferAmountHandleAsync>();
+// Handles
+builder.Services.AddScoped<IClientCreateHandleAsync, ClientCreateHandleAsync>();
+builder.Services.AddScoped<IAccountCreateHandleAsync, AccountCreateHandleAsync>();
+builder.Services.AddScoped<ITransferProcessHandleAsync, TransferProcessHandleAsync>();
+builder.Services.AddScoped<ITransferCreateHandleAsync, TransferCreateHandleAsync>();
+builder.Services.AddScoped<ITransferAmountHandleAsync, TransferAmountHandleAsync>();
 
     
 
-    services.Configure<RequestURIOptions>(
-        options => configuration.GetSection(RequestURIOptions.RequestURI).Bind(options));
+builder.Services.Configure<RequestURIOptions>(
+    options => configuration.GetSection(RequestURIOptions.RequestURI).Bind(options));
 
-    // External Auth Mock
-    services.AddScoped<IAuthorizationTransfer, AuthorizationTransfer>();
-});
+// External Auth Mock
+builder.Services.AddScoped<IAuthorizationTransfer, AuthorizationTransfer>();
 
 var app = builder.Build();
 
