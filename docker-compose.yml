@@ -19,7 +19,6 @@ services:
     image: postgres:12-alpine
     restart: always
     environment:
-      PGUSER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: picpaylite_db
     ports:
