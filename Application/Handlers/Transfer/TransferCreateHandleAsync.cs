@@ -1,7 +1,5 @@
 using FluentResults;
 using PicPayLite.Application.Handlers.Interfaces;
-using PicPayLite.Application.Helpers;
-using PicPayLite.Domain.Clients;
 using PicPayLite.Domain.Errors;
 using PicPayLite.Domain.Repositories;
 using PicPayLite.Domain.Tranfers;
@@ -28,16 +26,17 @@ namespace PicPayLite.Application.Handlers
 
         public async Task<Result<Transfer>> CreateAsync(TransferAmountRequest data)
         {
-            bool recipientAccountExist = AccountHelper.ValidateAccountExist(data.Recipient.AccountNumber);
-            bool senderAccountExist = AccountHelper.ValidateAccountExist(data.Recipient.AccountNumber);
+            bool recipientAccountExist = await _accountRepository.AnyAccountNumber(data.Recipient.AccountNumber);
+            bool senderAccountExist = await _accountRepository.AnyAccountNumber(data.Sender.AccountNumber);
 
             if(recipientAccountExist is false && senderAccountExist is false)
                 return Result.Fail(DomainErrors.Accounts.AccountNotFound);
 
             Transfer transfer = Transfer.Create(data.Amount, data.Sender, data.Recipient);
 
-            _transferRepository.Add(transfer);
-            await _dbContext.SaveChangesAsync();
+            //TODO: Avaliate if there's need to save these entities in the database 
+            //_transferRepository.Add(transfer);
+            //await _dbContext.SaveChangesAsync();
 
             return Result.Ok(transfer);
         }
