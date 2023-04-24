@@ -9,7 +9,10 @@ namespace PicPayLite.Infrastructure.ModelsConfigurations
         public void Configure(EntityTypeBuilder<Client> builder)
         {
             builder
-            .HasKey(c => c.Id);
+                .HasKey(c => c.Id);
+
+            builder
+                .HasAlternateKey(c => c.DocumentValue);
 
             builder
                 .Property(c => c.Name)
@@ -26,18 +29,15 @@ namespace PicPayLite.Infrastructure.ModelsConfigurations
                 .HasConversion<int>()
                 .IsRequired();
 
-            builder.OwnsOne(c => c.Document, document =>
-            {
-                document
-                    .Property(d => d.type)
-                    .HasConversion<int>()
-                    .IsRequired();
+            builder
+                .Property(c => c.DocumentType)
+                .HasConversion<int>()
+                .IsRequired();
 
-                document
-                    .Property(d => d.value)
-                    .HasMaxLength(14)
-                    .IsRequired();
-            });
+            builder
+                .Property(c => c.DocumentValue)
+                .HasMaxLength(14)
+                .IsRequired();
 
             builder.ToTable("Clients");
         }

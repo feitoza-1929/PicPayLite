@@ -16,7 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-    
+
 // DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));

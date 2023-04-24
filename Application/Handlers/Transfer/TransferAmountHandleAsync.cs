@@ -1,14 +1,12 @@
+
 using FluentResults;
 using PicPayLite.Application.Handlers.Interfaces;
-using PicPayLite.Application.Helpers;
 using PicPayLite.Domain.Accounts;
-using PicPayLite.Domain.Clients;
 using PicPayLite.Domain.Errors;
 using PicPayLite.Domain.Repositories;
 using PicPayLite.Domain.Tranfers;
 using PicPayLite.Infrastructure;
 using PicPayLite.Infrastructure.API;
-using PicPayLite.Presentation.RequestsPattern;
 
 namespace PicPayLite.Application.Handlers
 {
@@ -33,32 +31,54 @@ namespace PicPayLite.Application.Handlers
 
         public async Task<Result> TransferAsync(Transfer transfer)
         {
-            Account recipientAccount = 
-                _accountRepository
-                .GetAccountByNumber(transfer.Recipient.AccountNumber)
-                .First();
+            Account recipientAccount = await _accountRepository
+                .GetAccountByNumber(transfer.Recipient.AccountNumber);
 
-            Account senderAccount = 
-                _accountRepository
-                .GetAccountByNumber(transfer.Sender.AccountNumber)
-                .First();
+            Account senderAccount = await _accountRepository
+                .GetAccountByNumber(transfer.Sender.AccountNumber);
 
-            Result<float> resultWithdraw = senderAccount.Withdraw(transfer.Amount);
+            Result withdrawAmountResult = await WithdrawAmount(senderAccount, transfer.Amount);
+
+            if (withdrawAmountResult.IsFailed)
+                return Result.Fail(withdrawAmountResult.Errors.FirstOrDefault());
+
+            Result depositAmountResult = DepositAmount(recipientAccount, transfer.Amount);
+
+            if (depositAmountResult.IsFailed)
+                return Result.Fail(depositAmountResult.Errors.FirstOrDefault());
+
+            AuthTransfer authResponse = await _authorizationTransfer.GetAsync();
+
+            if (authResponse.Message != "Success")
+            {
+                DepositAmount(senderAccount, transfer.Amount);
+                await _dbContext.SaveChangesAsync();
+                return Result.Fail(DomainErrors.Transfers.TransferNotAuthorize);
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            return Result.Ok();
+        }
+
+        private async Task<Result> WithdrawAmount(Account account, float amount)
+        {
+            Result<float> resultWithdraw = account.Withdraw(amount);
 
             if (resultWithdraw.IsFailed)
                 return Result.Fail(resultWithdraw.Errors.First());
 
-            Result<float> resultDeposit = recipientAccount.Deposit(transfer.Amount);
+            await _dbContext.SaveChangesAsync();
+
+            return Result.Ok();
+        }
+
+        private Result DepositAmount(Account account, float amount)
+        {
+            Result<float> resultDeposit = account.Deposit(amount);
 
             if (resultDeposit.IsFailed)
-                return Result.Fail(resultWithdraw.Errors.First());
-
-            AuthData authorizationTransfer = await _authorizationTransfer.GetAsync();
-
-            if (authorizationTransfer.Message != "Success")
-                return Result.Fail(DomainErrors.Transfers.TransferNotAuthorize);
-
-            await _dbContext.SaveChangesAsync();
+                return Result.Fail(resultDeposit.Errors.FirstOrDefault());
 
             return Result.Ok();
         }

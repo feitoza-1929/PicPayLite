@@ -4,8 +4,9 @@ namespace PicPayLite.Domain.Repositories
 {
     public interface IAccountRepository : IRepository<Account>
     {
-        List<Account> GetAccountById(Guid id);
-        List<Account> GetAccountByNumber(int number);
+        Task<Account> GetAccountById(Guid id);
+        Task<Account> GetAccountByNumber(int number);
+        Task<bool> AnyAccountNumber(int number);
         
     }
 }

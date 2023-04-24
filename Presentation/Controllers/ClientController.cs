@@ -28,19 +28,10 @@ public class ClientController : ControllerBase
     [HttpPost("Create")]
     public async Task<IActionResult> CreateClientAsync([FromBody] CreateClientRequest requestData)
     {
-        if (await _dbContext.Database.CanConnectAsync())
-        {
-            Console.WriteLine("Connected to database\n");
-        }
-        else 
-        {
-            Console.WriteLine("Not Connected to database\n");
-        }
-        
         Result<Client> result = await _clientCreateHandleAsync.CreateAsync(requestData);
 
         return result.IsSuccess
-        ? Ok()
+        ? Ok(result.Value)
         : BadRequest(result.Errors.FirstOrDefault());
     }
 

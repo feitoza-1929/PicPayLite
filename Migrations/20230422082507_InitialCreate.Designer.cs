@@ -12,7 +12,7 @@ using PicPayLite.Infrastructure;
 namespace PicPayLite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230417001331_InitialCreate")]
+    [Migration("20230422082507_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -91,7 +91,7 @@ namespace PicPayLite.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("PicPayLite.Domain.Accounts.Balance", "Balance", b1 =>
+                    b.OwnsOne("PicPayLite.Domain.ValueObjects.Balance", "Balance", b1 =>
                         {
                             b1.Property<Guid>("AccountId")
                                 .HasColumnType("uuid");
@@ -120,7 +120,7 @@ namespace PicPayLite.Migrations
 
             modelBuilder.Entity("PicPayLite.Domain.Clients.Client", b =>
                 {
-                    b.OwnsOne("PicPayLite.Domain.Clients.Document", "Document", b1 =>
+                    b.OwnsOne("PicPayLite.Domain.ValueObjects.Document", "Document", b1 =>
                         {
                             b1.Property<Guid>("ClientId")
                                 .HasColumnType("uuid");
@@ -147,7 +147,7 @@ namespace PicPayLite.Migrations
 
             modelBuilder.Entity("PicPayLite.Domain.Tranfers.Transfer", b =>
                 {
-                    b.OwnsOne("PicPayLite.Domain.Tranfers.Recipient", "Recipient", b1 =>
+                    b.OwnsOne("PicPayLite.Domain.ValueObjects.Recipient", "Recipient", b1 =>
                         {
                             b1.Property<Guid>("TransferId")
                                 .HasColumnType("uuid");
@@ -166,7 +166,7 @@ namespace PicPayLite.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("TransferId");
 
-                            b1.OwnsOne("PicPayLite.Domain.Clients.Document", "Document", b2 =>
+                            b1.OwnsOne("PicPayLite.Domain.ValueObjects.Document", "Document", b2 =>
                                 {
                                     b2.Property<Guid>("RecipientTransferId")
                                         .HasColumnType("uuid");
@@ -191,7 +191,7 @@ namespace PicPayLite.Migrations
                                 .IsRequired();
                         });
 
-                    b.OwnsOne("PicPayLite.Domain.Tranfers.Sender", "Sender", b1 =>
+                    b.OwnsOne("PicPayLite.Domain.ValueObjects.Sender", "Sender", b1 =>
                         {
                             b1.Property<Guid>("TransferId")
                                 .HasColumnType("uuid");
@@ -210,7 +210,7 @@ namespace PicPayLite.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("TransferId");
 
-                            b1.OwnsOne("PicPayLite.Domain.Clients.Document", "Document", b2 =>
+                            b1.OwnsOne("PicPayLite.Domain.ValueObjects.Document", "Document", b2 =>
                                 {
                                     b2.Property<Guid>("SenderTransferId")
                                         .HasColumnType("uuid");

@@ -22,7 +22,17 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: picpaylite_db
     ports:
-      - 5432:5432
+        - 5432:5432
+    networks:
+        - appnetwork
+    volumes:
+        - postgres_volume:/var/lib/docker/volumes/postgres_volume/_data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
     networks:
         - appnetwork
   
@@ -30,5 +40,9 @@ services:
 networks:
   appnetwork:
     name: custom_network
+    external: true  
+
+volumes:
+  postgres_volume:
     external: true
 
