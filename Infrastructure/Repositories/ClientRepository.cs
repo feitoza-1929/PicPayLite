@@ -21,30 +21,25 @@ namespace PicPayLite.Infrastructure.Repositories
             _dbContext.Clients.Remove(data);
         }
 
-        public List<Client> GetClientById(Guid id)
+        public async Task<Client> GetClientById(Guid id)
         {
-            List<Client> data = _dbContext.Clients
-                .Where(client => client.Id == id)
-                .Select(client => client)
-                .ToList();
+            List<Client> data = await _dbContext.Clients
+                .Where(client => client.Id.Equals(id))
+                .ToListAsync();
 
-            if (data is null)
-                throw new NullReferenceException("try to fetch client data by id, but is null");
+            return data.FirstOrDefault();
+        }
+
+        public async Task<List<Client>> GetAllClients()
+        {
+            List<Client> data = await _dbContext.Clients.ToListAsync();
 
             return data;
         }
 
-        public List<Client> GetClientByDocument(string documentNumber)
+        public async Task<bool> AnyDocumentValue(string documentValue)
         {
-            List<Client> data = _dbContext.Clients
-                .Where(client => client.Document.value == documentNumber)
-                .Select(client => client)
-                .ToList();
-
-            if(data is null)
-                throw new NullReferenceException("try to fetch client data by document, but is null");
-
-            return data;
+            return await _dbContext.Clients.AnyAsync(c => c.DocumentValue == documentValue);
         }
     }
 }

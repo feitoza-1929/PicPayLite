@@ -1,6 +1,5 @@
 using FluentResults;
 using PicPayLite.Application.Handlers.Interfaces;
-using PicPayLite.Application.Helpers;
 using PicPayLite.Domain.Accounts;
 using PicPayLite.Domain.Errors;
 using PicPayLite.Domain.Repositories;
@@ -15,18 +14,20 @@ namespace PicPayLite.Application.Handlers
         private readonly float defaultAmount = 500;
         private readonly string defaultCurrency = "BRL";
         private readonly IAccountRepository _accountRepository;
+        private readonly IClientRepository _clientRepository;
         private readonly ApplicationDbContext _dbContext;
 
-        public AccountCreateHandleAsync(IAccountRepository accountRepository, ApplicationDbContext dbContext)
+
+        public AccountCreateHandleAsync(IAccountRepository accountRepository, IClientRepository clientRepository, ApplicationDbContext dbContext)
         {
             _accountRepository = accountRepository;
             _dbContext = dbContext;
+            _clientRepository = clientRepository;
         }
 
         public async Task<Result<Account>> CreateAsync(CreateAccountRequest data)
         {
-            bool clientExist = ClientHelper.ValidateClientExist(data.Document.value);
-            if(clientExist is false)
+            if (await _clientRepository.AnyDocumentValue(data.Document.value) is false)
                 return Result.Fail(DomainErrors.Clients.ClientNotFound);
 
             int accountNumber = new Random().Next(1000, 9999);
