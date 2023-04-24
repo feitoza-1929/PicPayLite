@@ -3,13 +3,10 @@ using PicPayLite.Domain.ValueObjects;
 
 namespace PicPayLite.Presentation.RequestsPattern
 {
-    public record TransferAmountRequest
+    public class TransferAmountRequest
     {
-        [Required]
-        public int Amount { get; init; }
-        [Required]
-        public Sender Sender { get; init; }
-        [Required]
-        public Recipient Recipient { get; init; }
+        public int Amount { get; set; }
+        public TransferPersonData Sender { get; set; }
+        public TransferPersonData Recipient { get; set; }
     }
 }

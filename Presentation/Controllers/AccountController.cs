@@ -35,7 +35,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost("Transfer")]
-    public async Task<IActionResult> TransferAsync(TransferAmountRequest requestData)
+    public async Task<IActionResult> TransferAsync([FromBody] TransferAmountRequest requestData)
     {
         Result result = await _transferProcessHandleAsync.ProcessAsync(requestData);
 
