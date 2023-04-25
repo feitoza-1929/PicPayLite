@@ -31,7 +31,7 @@ public class ClientController : ControllerBase
         Result result = await _clientCreateHandleAsync.CreateAsync(requestData);
 
         return result.IsSuccess
-        ? Ok(result.Value)
+        ? Ok()
         : BadRequest(result.Errors.FirstOrDefault());
     }
 

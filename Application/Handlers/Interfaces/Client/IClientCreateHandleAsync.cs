@@ -6,6 +6,6 @@ namespace PicPayLite.Application.Handlers.Interfaces
 {
     public interface IClientCreateHandleAsync
     {
-        Task<Result<Client>> CreateAsync(CreateClientRequest data);
+        Task<Result> CreateAsync(CreateClientRequest data);
     }
 }

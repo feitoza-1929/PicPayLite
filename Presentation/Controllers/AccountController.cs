@@ -27,10 +27,10 @@ public class AccountController : ControllerBase
     [HttpPost("Create")]
     public async Task<IActionResult> CreateAccountAsync([FromBody] CreateAccountRequest requestData)
     {
-        Result<Account> result = await _accountCreateHandleAsync.CreateAsync(requestData);
+        Result result = await _accountCreateHandleAsync.CreateAsync(requestData);
         
         return result.IsSuccess 
-        ? Ok(result.Value) 
+        ? Ok() 
         : BadRequest(result.Errors.FirstOrDefault());
     }
 

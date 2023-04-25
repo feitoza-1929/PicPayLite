@@ -25,7 +25,7 @@ namespace PicPayLite.Application.Handlers
             _clientRepository = clientRepository;
         }
 
-        public async Task<Result<Account>> CreateAsync(CreateAccountRequest data)
+        public async Task<Result> CreateAsync(CreateAccountRequest data)
         {
             if (await _clientRepository.AnyDocumentValue(data.Document.value) is false)
                 return Result.Fail(DomainErrors.Clients.ClientNotFound);
