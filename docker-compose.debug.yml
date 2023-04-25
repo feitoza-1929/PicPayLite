@@ -17,7 +17,7 @@ services:
     depends_on:
       - db
     networks:
-      - my_network
+      - appnetwork
     
   db:
     image: postgres:12-alpine
@@ -28,16 +28,17 @@ services:
       POSTGRES_DB: picpaylite_db
     ports:
       - 5432:5432
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
-      interval: 30s
-      timeout: 60s
-      retries: 5
-      start_period: 80s  
     networks:
-      - my_network
+      - appnetwork
+    volumes:
+      - postgres_volume:/var/lib/docker/volumes/postgres_volume/_data
+
 networks:
-  my_network:
+  appnetwork:
     name: custom_network
+    external: true  
+
+volumes:
+  postgres_volume:
     external: true
 

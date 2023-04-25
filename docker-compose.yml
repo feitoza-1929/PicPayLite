@@ -4,15 +4,17 @@ version: '3.5'
 
 services:
   ## application ##
-  #picpaylite:
-  #  image: picpaylite
-  #  build:
-  #    context: .
-  #    dockerfile: ./Dockerfile
-  #  ports:
-  #    - 5048:5048
-  #  networks:
-  #  - appnetwork
+  picpaylite:
+   image: picpaylite
+   build:
+     context: .
+     dockerfile: ./Dockerfile
+   ports:
+    - 5048:5048
+   networks:
+    - appnetwork
+   depends_on:
+    - db
 
   ## db ##
   db:
@@ -22,11 +24,11 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: picpaylite_db
     ports:
-        - 5432:5432
+      - 5432:5432
     networks:
-        - appnetwork
+      - appnetwork
     volumes:
-        - postgres_volume:/var/lib/docker/volumes/postgres_volume/_data
+      - postgres_volume:/var/lib/docker/volumes/postgres_volume/_data
 
   adminer:
     image: adminer
@@ -34,7 +36,7 @@ services:
     ports:
       - 8080:8080
     networks:
-        - appnetwork
+      - appnetwork
   
 
 networks:

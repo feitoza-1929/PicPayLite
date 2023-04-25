@@ -21,7 +21,7 @@ namespace PicPayLite.Application.Handlers
             _dbContext = dbContext;
         }
 
-        public async Task<Result<Client>> CreateAsync(CreateClientRequest data)
+        public async Task<Result> CreateAsync(CreateClientRequest data)
         {
             Client client = Client.Create(data.Name, data.Email, data.Type, data.Document.value, data.Document.type);
 
@@ -31,7 +31,7 @@ namespace PicPayLite.Application.Handlers
             _clientRepository.Add(client);
             await _dbContext.SaveChangesAsync();
 
-            return Result.Ok(client);
+            return Result.Ok();
         }
     }
 }

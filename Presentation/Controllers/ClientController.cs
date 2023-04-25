@@ -28,7 +28,7 @@ public class ClientController : ControllerBase
     [HttpPost("Create")]
     public async Task<IActionResult> CreateClientAsync([FromBody] CreateClientRequest requestData)
     {
-        Result<Client> result = await _clientCreateHandleAsync.CreateAsync(requestData);
+        Result result = await _clientCreateHandleAsync.CreateAsync(requestData);
 
         return result.IsSuccess
         ? Ok(result.Value)
