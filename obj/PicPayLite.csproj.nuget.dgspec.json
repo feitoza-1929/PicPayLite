@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "E:\\feitoza\\Documents\\Sources\\PicPayLite\\PicPayLite.csproj": {}
+    "/home/feitoza/Sources/projects/PicPayLite/PicPayLite.csproj": {}
   },
   "projects": {
-    "E:\\feitoza\\Documents\\Sources\\PicPayLite\\PicPayLite.csproj": {
+    "/home/feitoza/Sources/projects/PicPayLite/PicPayLite.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\feitoza\\Documents\\Sources\\PicPayLite\\PicPayLite.csproj",
+        "projectUniqueName": "/home/feitoza/Sources/projects/PicPayLite/PicPayLite.csproj",
         "projectName": "PicPayLite",
-        "projectPath": "E:\\feitoza\\Documents\\Sources\\PicPayLite\\PicPayLite.csproj",
-        "packagesPath": "C:\\Users\\feitoza\\.nuget\\packages\\",
-        "outputPath": "E:\\feitoza\\Documents\\Sources\\PicPayLite\\obj\\",
+        "projectPath": "/home/feitoza/Sources/projects/PicPayLite/PicPayLite.csproj",
+        "packagesPath": "/home/feitoza/.nuget/packages/",
+        "outputPath": "/home/feitoza/Sources/projects/PicPayLite/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\feitoza\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/feitoza/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -90,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/feitoza/.asdf/installs/dotnet-core/7.0.100-preview.6.22352.1/sdk/7.0.100-preview.6.22352.1/RuntimeIdentifierGraph.json"
         }
       }
     }
