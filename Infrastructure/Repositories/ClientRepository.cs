@@ -33,7 +33,7 @@ namespace PicPayLite.Infrastructure.Repositories
         public async Task<Client> GetClientByDocument(string documentValue)
         {
             List<Client> data = await _dbContext.Clients
-                .Where(client => client.DocumentValue)
+                .Where(client => client.DocumentValue == documentValue)
                 .ToListAsync();
 
             return data.FirstOrDefault();
