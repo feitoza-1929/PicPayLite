@@ -24,7 +24,7 @@ public class AccountController : ControllerBase
         _transferProcessHandleAsync = transferProcessHandleAsync;
     }
 
-    [HttpPost("Create")]
+    [HttpPost("create")]
     public async Task<IActionResult> CreateAccountAsync([FromBody] CreateAccountRequest requestData)
     {
         Result result = await _accountCreateHandleAsync.CreateAsync(requestData);
@@ -34,7 +34,7 @@ public class AccountController : ControllerBase
         : BadRequest(result.Errors.FirstOrDefault());
     }
 
-    [HttpPost("Transfer")]
+    [HttpPost("transfer")]
     public async Task<IActionResult> TransferAsync([FromBody] TransferAmountRequest requestData)
     {
         Result result = await _transferProcessHandleAsync.ProcessAsync(requestData);
@@ -44,7 +44,7 @@ public class AccountController : ControllerBase
         : BadRequest(result.Errors.FirstOrDefault());
     }
 
-    [HttpGet("Balance")]
+    [HttpGet("balance")]
     public IActionResult GetAccountBalanceAsync()
     {
         return Empty;

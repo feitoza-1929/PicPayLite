@@ -1,5 +1,6 @@
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using PicPayLite.Application.Handlers;
 using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Clients;
 using PicPayLite.Infrastructure;
@@ -13,19 +14,22 @@ public class ClientController : ControllerBase
 {
     private readonly ILogger<ClientController> _logger;
     private readonly IClientCreateHandleAsync _clientCreateHandleAsync;
+    private readonly IClientTokenHandleAsync _clientTokenHandleAsync;
     private readonly ApplicationDbContext _dbContext;
-
+    
     public ClientController(
         ILogger<ClientController> logger,
         IClientCreateHandleAsync clientCreateHandleAsync,
+         IClientTokenHandleAsync clientTokenHandleAsync,
         ApplicationDbContext dbContext)
     {
         _logger = logger;
         _clientCreateHandleAsync = clientCreateHandleAsync;
+        _clientTokenHandleAsync = clientTokenHandleAsync;
         _dbContext = dbContext;
     }
 
-    [HttpPost("Create")]
+    [HttpPost("create")]
     public async Task<IActionResult> CreateClientAsync([FromBody] CreateClientRequest requestData)
     {
         Result result = await _clientCreateHandleAsync.CreateAsync(requestData);
@@ -35,10 +39,10 @@ public class ClientController : ControllerBase
         : BadRequest(result.Errors.FirstOrDefault());
     }
 
-    [HttpGet("Token")]
-    public IActionResult GetClientTokenAsync()
+    [HttpGet("{document}/token")]
+    public async Task<IActionResult> GetClientTokenAsync(string document)
     {
-        var result = await _clientTokenHandleAsync.CreateAsync();
-        return Ok(result.value);
+        Result<string> result = await _clientTokenHandleAsync.CreateAsync(document);
+        return Ok(result.Value);
     }
 }

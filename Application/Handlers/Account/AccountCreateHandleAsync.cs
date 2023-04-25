@@ -37,7 +37,7 @@ namespace PicPayLite.Application.Handlers
             _accountRepository.Add(account);
             await _dbContext.SaveChangesAsync();
 
-            return Result.Ok(account);
+            return Result.Ok();
         }
     }
 }

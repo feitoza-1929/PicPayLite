@@ -28,6 +28,7 @@ builder.Services.AddTransient<ITransferRepository, TransferRepository>();
 
 // Handles
 builder.Services.AddScoped<IClientCreateHandleAsync, ClientCreateHandleAsync>();
+builder.Services.AddScoped<IClientTokenHandleAsync, ClientTokenHandleAsync>();
 builder.Services.AddScoped<IAccountCreateHandleAsync, AccountCreateHandleAsync>();
 builder.Services.AddScoped<ITransferProcessHandleAsync, TransferProcessHandleAsync>();
 builder.Services.AddScoped<ITransferCreateHandleAsync, TransferCreateHandleAsync>();
