@@ -30,6 +30,15 @@ namespace PicPayLite.Infrastructure.Repositories
             return data.FirstOrDefault();
         }
 
+        public async Task<Client> GetClientByDocument(string documentValue)
+        {
+            List<Client> data = await _dbContext.Clients
+                .Where(client => client.DocumentValue)
+                .ToListAsync();
+
+            return data.FirstOrDefault();
+        }
+
         public async Task<List<Client>> GetAllClients()
         {
             List<Client> data = await _dbContext.Clients.ToListAsync();

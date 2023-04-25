@@ -38,6 +38,7 @@ public class ClientController : ControllerBase
     [HttpGet("Token")]
     public IActionResult GetClientTokenAsync()
     {
-        return Empty;
+        var result = await _clientTokenHandleAsync.CreateAsync();
+        return Ok(result.value);
     }
 }
