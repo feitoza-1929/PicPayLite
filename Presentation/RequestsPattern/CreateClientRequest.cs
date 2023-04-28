@@ -6,8 +6,11 @@ namespace PicPayLite.Presentation.RequestsPattern
     public record CreateClientRequest
     {
         [Required]
+        [MaxLength(50)]
         public string Name { get; init; }
+
         [Required]
+        [MaxLength(50)]
         public string Email { get; init; }
         [Required]
         public ClientType Type { get; init; }

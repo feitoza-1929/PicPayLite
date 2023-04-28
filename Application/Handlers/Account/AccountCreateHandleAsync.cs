@@ -41,7 +41,7 @@ namespace PicPayLite.Application.Handlers
                 await _accountRepository.AnyAccountByClientId(client.Id);
 
             if(accountExist)
-                return Result.Fail(DomainErrors.Accounts.AlreadyHaveAccount);
+                return Result.Fail(DomainErrors.Accounts.AccountAlreadyExist);
 
             int accountNumber = new Random().Next(1000, 9999);
             Balance balance = new Balance(defaultCurrency, defaultAmount);

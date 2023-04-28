@@ -23,7 +23,6 @@ services:
     image: postgres:12-alpine
     restart: always
     environment:
-      PGUSER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: picpaylite_db
     ports:
@@ -32,6 +31,14 @@ services:
       - appnetwork
     volumes:
       - postgres_volume:/var/lib/docker/volumes/postgres_volume/_data
+
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8080:8080
+      networks:
+        - appnetwork
 
 networks:
   appnetwork:

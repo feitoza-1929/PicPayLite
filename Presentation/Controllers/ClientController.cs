@@ -1,6 +1,5 @@
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
-using PicPayLite.Application.Handlers;
 using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Clients;
 using PicPayLite.Infrastructure;
@@ -32,7 +31,11 @@ public class ClientController : ControllerBase
     [HttpPost("create")]
     public async Task<IActionResult> CreateClientAsync([FromBody] CreateClientRequest requestData)
     {
-        Result result = await _clientCreateHandleAsync.CreateAsync(requestData);
+        if(await _dbContext.Database.CanConnectAsync())
+            Console.WriteLine("connected to database");
+            
+        Result result = 
+            await _clientCreateHandleAsync.CreateAsync(requestData);
 
         return result.IsSuccess
         ? Ok()
@@ -42,7 +45,11 @@ public class ClientController : ControllerBase
     [HttpGet("{document}/token")]
     public async Task<IActionResult> GetClientTokenAsync(string document)
     {
-        Result<string> result = await _clientTokenHandleAsync.CreateAsync(document);
-        return Ok(result.Value);
+        Result<string> result =
+            await _clientTokenHandleAsync.CreateAsync(document);
+
+        return result.IsSuccess 
+        ? Ok(result.Value)
+        : BadRequest(result.Errors.FirstOrDefault());
     }
 }
