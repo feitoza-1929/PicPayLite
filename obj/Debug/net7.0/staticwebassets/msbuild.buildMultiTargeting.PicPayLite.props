@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="..\build\PicPayLite.props" />
+  <Import Project="../build/PicPayLite.props" />
 </Project>
