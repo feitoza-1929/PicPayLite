@@ -1,6 +1,7 @@
 using FluentResults;
 using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Accounts;
+using PicPayLite.Domain.Clients;
 using PicPayLite.Domain.Errors;
 using PicPayLite.Domain.Repositories;
 using PicPayLite.Domain.ValueObjects;
@@ -25,14 +26,26 @@ namespace PicPayLite.Application.Handlers
             _clientRepository = clientRepository;
         }
 
-        public async Task<Result> CreateAsync(CreateAccountRequest data)
+        public async Task<Result<Account>> CreateAsync(CreateAccountRequest data)
         {
-            if (await _clientRepository.AnyDocumentValue(data.Document.value) is false)
+            bool clientExist = 
+                await _clientRepository.AnyDocumentValue(data.Document.value);
+            
+            if (clientExist is false)
                 return Result.Fail(DomainErrors.Clients.ClientNotFound);
+
+            Client client = 
+                await _clientRepository.GetClientByDocument(data.Document.value);
+
+            bool accountExist = 
+                await _accountRepository.AnyAccountByClientId(client.Id);
+
+            if(accountExist)
+                return Result.Fail(DomainErrors.Accounts.AlreadyHaveAccount);
 
             int accountNumber = new Random().Next(1000, 9999);
             Balance balance = new Balance(defaultCurrency, defaultAmount);
-            Account account = Account.Create(data.ClientId, accountNumber, balance);
+            Account account = Account.Create(client.Id, accountNumber, balance);
 
             _accountRepository.Add(account);
             await _dbContext.SaveChangesAsync();
