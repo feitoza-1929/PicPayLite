@@ -42,6 +42,20 @@ namespace PicPayLite.Infrastructure.Repositories
             return data.FirstOrDefault();
         }
 
+        public async Task<Account> GetAccountByClientId(Guid clientId)
+        {
+            List<Account> data = await _dbContext.Accounts
+                .Where(account => account.ClientId == clientId)
+                .ToListAsync();
+
+            return data.FirstOrDefault();
+        }
+
+        public async Task<bool> AnyAccountByClientId(Guid clientId)
+        {
+            return await _dbContext.Accounts.AnyAsync(c => c.ClientId == clientId);
+        }
+
         public async Task<bool> AnyAccountNumber(int number)
         {
             return await _dbContext.Accounts.AnyAsync(c => c.Number == number);

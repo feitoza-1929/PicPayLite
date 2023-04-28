@@ -6,6 +6,8 @@ namespace PicPayLite.Domain.Repositories
     {
         Task<Account> GetAccountById(Guid id);
         Task<Account> GetAccountByNumber(int number);
+        Task<Account> GetAccountByClientId(Guid clientId);
+        Task<bool> AnyAccountByClientId(Guid clientId);
         Task<bool> AnyAccountNumber(int number);
         
     }
