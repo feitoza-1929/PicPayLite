@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using PicPayLite.Application.Handlers;
 using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Repositories;
 using PicPayLite.Infrastructure;
 using PicPayLite.Infrastructure.API;
+using PicPayLite.Infrastructure.Authentication;
+using PicPayLite.Infrastructure.ConfigurationOptionsSetup;
 using PicPayLite.Infrastructure.Options;
 using PicPayLite.Infrastructure.Repositories;
 
@@ -15,7 +18,8 @@ builder.Services.AddHttpClient();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddRouting(options => options.LowercaseUrls = true);
+builder.Services.AddRouting(
+    options => options.LowercaseUrls = true);
 
 // DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(
@@ -26,10 +30,12 @@ builder.Services.AddTransient<IClientRepository, ClientRepository>();
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
 builder.Services.AddTransient<ITransferRepository, TransferRepository>();
 
-// Handles
+// Handlers
 builder.Services.AddScoped<IClientCreateHandleAsync, ClientCreateHandleAsync>();
 builder.Services.AddScoped<IClientTokenHandleAsync, ClientTokenHandleAsync>();
 builder.Services.AddScoped<IAccountCreateHandleAsync, AccountCreateHandleAsync>();
+builder.Services.AddScoped<IAccountGetBalanceHandleAsync, AccountGetBalanceHandleAsync>();
+builder.Services.AddScoped<IAccountGetHandleAsync, AccountGetHandleAsync>();
 builder.Services.AddScoped<ITransferProcessHandleAsync, TransferProcessHandleAsync>();
 builder.Services.AddScoped<ITransferCreateHandleAsync, TransferCreateHandleAsync>();
 builder.Services.AddScoped<ITransferAmountHandleAsync, TransferAmountHandleAsync>();
@@ -42,6 +48,14 @@ builder.Services.Configure<RequestURIOptions>(
 // External Auth Mock
 builder.Services.AddScoped<IAuthorizationTransfer, AuthorizationTransfer>();
 
+// Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer();
+builder.Services.AddScoped<IJwtProvider, JwtProvider>();
+builder.Services.ConfigureOptions<JwtOptionsSetup>();
+builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -51,6 +65,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

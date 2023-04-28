@@ -1,7 +1,9 @@
 using FluentResults;
 using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Clients;
+using PicPayLite.Domain.Errors;
 using PicPayLite.Domain.Repositories;
+using PicPayLite.Infrastructure.Authentication;
 
 namespace PicPayLite.Application.Handlers
 {
@@ -18,14 +20,14 @@ namespace PicPayLite.Application.Handlers
         
         public async Task<Result<string>> CreateAsync(string documentValue)
         {
-            // 1) GET THE CLIENT AND VERIFY IF EXIST
             Client client = await _clientRepository.GetClientByDocument(documentValue);
-            
-            // 2) THEN GENERATE THE TOKEN
-            string token = await _jwtProvider.GenerateTokenAsync(client);
 
-            // 3) AND RETURN THE TOKEN
-            return token;
+            if(client is null)
+                return Result.Fail(DomainErrors.Clients.ClientNotFound);
+
+            string token = _jwtProvider.Generate(client);
+            
+            return Result.Ok(token);
         }
     }
 }
