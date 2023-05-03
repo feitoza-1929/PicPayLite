@@ -1,5 +1,11 @@
 using PicPayLite.Domain.Accounts;
 using PicPayLite.Domain.ValueObjects;
+using EmailValidation;
+using FluentResults;
+using PicPayLite.Domain.Errors;
+using System.Text.RegularExpressions;
+using DocumentValidator;
+using PicPayLite.Domain.Validation;
 
 namespace PicPayLite.Domain.Clients
 {
@@ -26,13 +32,23 @@ namespace PicPayLite.Domain.Clients
             DocumentType = documentType;
         }
 
-        public static Client Create(
+        public static Result<Client> Create(
             string name,
             string email,
             ClientType type,
             string documentValue,
             DocumentType documentType)
         {
+
+            if(NameValidation.Validate(name) is false)
+                return Result.Fail(DomainErrors.Client.InvalidName);
+
+            if(EmailValidator.Validate(email) is false)
+                return Result.Fail(DomainErrors.Client.InvalidEmail);
+
+            if(DocumentValidation.Validate(documentValue, documentType) is false)
+                return Result.Fail(DomainErrors.Client.InvalidDocument);
+
             return new Client(name, email, type, documentValue, documentType);
         }
     }
