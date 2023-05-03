@@ -41,8 +41,8 @@ public class AccountController : ControllerBase
             await _accountCreateHandleAsync.CreateAsync(requestData);
 
         return result.IsSuccess 
-        ? Ok(AccountResponse.Create(result.Value)) 
-        : BadRequest(result.Errors.FirstOrDefault());
+        ? Created("", AccountResponse.Create(result.Value)) 
+        : BadRequest(ErrorResponse.Create(result.Errors.First()));
     }
 
     [Authorize]
@@ -54,7 +54,7 @@ public class AccountController : ControllerBase
 
         return result.IsSuccess
         ? Ok()
-        : BadRequest(result.Errors.FirstOrDefault());
+        : BadRequest(ErrorResponse.Create(result.Errors.First()));
     }
 
     [Authorize]
@@ -66,7 +66,7 @@ public class AccountController : ControllerBase
 
         return result.IsSuccess
             ? Ok(AccountResponse.Create(result.Value))
-            : BadRequest(result.Errors.FirstOrDefault());
+            : BadRequest(ErrorResponse.Create(result.Errors.First()));
     }
 
     [Authorize]
@@ -78,6 +78,6 @@ public class AccountController : ControllerBase
 
         return result.IsSuccess
             ? Ok(result.Value)
-            : BadRequest(result.Errors.FirstOrDefault());
+            : BadRequest(ErrorResponse.Create(result.Errors.First()));
     }
 }

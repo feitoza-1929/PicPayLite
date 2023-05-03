@@ -4,6 +4,7 @@ using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Clients;
 using PicPayLite.Infrastructure;
 using PicPayLite.Presentation.RequestsPattern;
+using PicPayLite.Presentation.ResponsePattern;
 
 namespace PicPayLite.Presentation.Controllers;
 
@@ -34,12 +35,12 @@ public class ClientController : ControllerBase
         if(await _dbContext.Database.CanConnectAsync())
             Console.WriteLine("connected to database");
             
-        Result result = 
+        Result<Client> result = 
             await _clientCreateHandleAsync.CreateAsync(requestData);
 
         return result.IsSuccess
-        ? Ok()
-        : BadRequest(result.Errors.FirstOrDefault());
+        ? Created("", ClientResponse.Create(result.Value))
+        : BadRequest(ErrorResponse.Create(result.Errors.First()));
     }
 
     [HttpGet("{document}/token")]
@@ -50,6 +51,6 @@ public class ClientController : ControllerBase
 
         return result.IsSuccess 
         ? Ok(result.Value)
-        : BadRequest(result.Errors.FirstOrDefault());
+        : BadRequest(ErrorResponse.Create(result.Errors.First()));
     }
 }
