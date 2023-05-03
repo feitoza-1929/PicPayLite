@@ -11,9 +11,12 @@ namespace PicPayLite.Presentation.RequestsPattern
 
         [Required]
         [MaxLength(50)]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; init; }
+
         [Required]
         public ClientType Type { get; init; }
+
         [Required]
         public Document Document { get; init; }
     }
