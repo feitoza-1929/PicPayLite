@@ -33,10 +33,10 @@ namespace PicPayLite.Domain.Accounts
         public Result<float> Withdraw(float value)
         {
             if (value <= 0)
-                return Result.Fail(DomainErrors.Accounts.InvalidAmountValue);
+                return Result.Fail(DomainErrors.Account.InvalidAmountValue);
 
             if(value > Balance.Amount || Balance.Amount == 0)
-                return Result.Fail(DomainErrors.Accounts.InsuficientBalance);
+                return Result.Fail(DomainErrors.Account.InsuficientBalance);
 
             Balance.Amount = Balance.Amount - value;
 
@@ -45,7 +45,7 @@ namespace PicPayLite.Domain.Accounts
         public Result Deposit(float value)
         {
             if(value <= 0)
-                return Result.Fail(DomainErrors.Accounts.InvalidAmountValue);
+                return Result.Fail(DomainErrors.Account.InvalidAmountValue);
 
             Balance.Amount = Balance.Amount + value;
             return Result.Ok();

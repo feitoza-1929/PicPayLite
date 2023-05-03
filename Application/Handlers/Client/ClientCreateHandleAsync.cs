@@ -21,17 +21,27 @@ namespace PicPayLite.Application.Handlers
             _dbContext = dbContext;
         }
 
-        public async Task<Result> CreateAsync(CreateClientRequest data)
+        public async Task<Result<Client>> CreateAsync(CreateClientRequest data)
         {
-            Client client = Client.Create(data.Name, data.Email, data.Type, data.Document.value, data.Document.type);
+            Result<Client> resultClient = Client.Create(
+                data.Name, 
+                data.Email, 
+                data.Type, 
+                data.Document.value, 
+                data.Document.type);
+
+            if(resultClient.IsFailed)
+                return Result.Fail(resultClient.Errors.FirstOrDefault());
+
+            Client client = resultClient.Value;
 
             if (await _clientRepository.AnyDocumentValue(client.DocumentValue))
-                return Result.Fail(DomainErrors.Clients.ClientAlreadyExist);
+                return Result.Fail(DomainErrors.Client.ClientAlreadyExist);
 
             _clientRepository.Add(client);
             await _dbContext.SaveChangesAsync();
 
-            return Result.Ok();
+            return Result.Ok(client);
         }
     }
 }

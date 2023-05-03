@@ -30,7 +30,7 @@ namespace PicPayLite.Application.Handlers
             bool senderAccountExist = await _accountRepository.AnyAccountNumber(data.Sender.AccountNumber);
 
             if(recipientAccountExist is false && senderAccountExist is false)
-                return Result.Fail(DomainErrors.Accounts.AccountNotFound);
+                return Result.Fail(DomainErrors.Account.AccountNotFound);
 
             Transfer transfer = Transfer.Create(data.Amount, data.Sender, data.Recipient);
 

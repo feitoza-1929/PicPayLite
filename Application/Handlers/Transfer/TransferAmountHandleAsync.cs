@@ -53,7 +53,7 @@ namespace PicPayLite.Application.Handlers
             {
                 DepositAmount(senderAccount, transfer.Amount);
                 await _dbContext.SaveChangesAsync();
-                return Result.Fail(DomainErrors.Transfers.TransferNotAuthorize);
+                return Result.Fail(DomainErrors.Transfer.TransferNotAuthorize);
             }
 
             await _dbContext.SaveChangesAsync();

@@ -23,7 +23,7 @@ namespace PicPayLite.Application.Handlers
             Client client = await _clientRepository.GetClientByDocument(documentValue);
 
             if(client is null)
-                return Result.Fail(DomainErrors.Clients.ClientNotFound);
+                return Result.Fail(DomainErrors.Client.ClientNotFound);
 
             string token = _jwtProvider.Generate(client);
             

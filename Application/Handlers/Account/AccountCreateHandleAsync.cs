@@ -32,7 +32,7 @@ namespace PicPayLite.Application.Handlers
                 await _clientRepository.AnyDocumentValue(data.Document.value);
             
             if (clientExist is false)
-                return Result.Fail(DomainErrors.Clients.ClientNotFound);
+                return Result.Fail(DomainErrors.Client.ClientNotFound);
 
             Client client = 
                 await _clientRepository.GetClientByDocument(data.Document.value);
@@ -41,7 +41,7 @@ namespace PicPayLite.Application.Handlers
                 await _accountRepository.AnyAccountByClientId(client.Id);
 
             if(accountExist)
-                return Result.Fail(DomainErrors.Accounts.AccountAlreadyExist);
+                return Result.Fail(DomainErrors.Account.AccountAlreadyExist);
 
             int accountNumber = new Random().Next(1000, 9999);
             Balance balance = new Balance(defaultCurrency, defaultAmount);
