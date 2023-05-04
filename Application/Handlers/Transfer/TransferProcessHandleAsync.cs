@@ -17,7 +17,7 @@ namespace PicPayLite.Application.Handlers
             _transferCreateHandleAsync = transferCreateHandleAsync;
             _transferAmountHandleAsync = transferAmountHandleAsync;
         }
-        public async Task<Result> ProcessAsync(TransferAmountRequest requestData)
+        public async Task<Result<Transfer>> ProcessAsync(TransferAmountRequest requestData)
         {
             Result<Transfer> createResult = await _transferCreateHandleAsync.CreateAsync(requestData);
 
@@ -29,7 +29,7 @@ namespace PicPayLite.Application.Handlers
             if (transferAmountResult.IsFailed)
                 return Result.Fail(transferAmountResult.Errors.FirstOrDefault());
 
-            return Result.Ok();
+            return Result.Ok(createResult.Value);
         }
     }
 }

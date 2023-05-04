@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Accounts;
+using PicPayLite.Domain.Tranfers;
 using PicPayLite.Domain.ValueObjects;
 using PicPayLite.Presentation.RequestsPattern;
 using PicPayLite.Presentation.ResponsePattern;
@@ -49,11 +50,11 @@ public class AccountController : ControllerBase
     [HttpPost("transfer")]
     public async Task<IActionResult> TransferAsync([FromBody] TransferAmountRequest requestData)
     {
-        Result result = 
+        Result<Transfer> result = 
             await _transferProcessHandleAsync.ProcessAsync(requestData);
 
         return result.IsSuccess
-        ? Ok()
+        ? Created("", TransferResponse.Create(result.Value))
         : BadRequest(ErrorResponse.Create(result.Errors.First()));
     }
 
