@@ -25,7 +25,7 @@ namespace PicPayLite.Domain.Errors
             public static readonly DomainErrors ClientNotFound = new("ClientNotFound", "client can't be found");
             public static readonly DomainErrors ClientAlreadyExist = new("ClientAlreadyExist", "the given client already exist");
             public static readonly DomainErrors InvalidEmail = new("InvalidEmail", "the given email is invalid");
-            public static readonly DomainErrors InvalidName = new("InvalidEmail", "the given name is invalid");
+            public static readonly DomainErrors InvalidName = new("InvalidName", "the given name is invalid");
             public static readonly DomainErrors InvalidDocument = new("InvalidDocument", "the given document is invalid");
 
         }
