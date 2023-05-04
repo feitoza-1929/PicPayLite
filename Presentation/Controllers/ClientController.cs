@@ -50,7 +50,7 @@ public class ClientController : ControllerBase
             await _clientTokenHandleAsync.CreateAsync(document);
 
         return result.IsSuccess 
-        ? Ok(result.Value)
+        ? Ok(TokenResponse.Create(result.Value))
         : BadRequest(ErrorResponse.Create(result.Errors.First()));
     }
 }
