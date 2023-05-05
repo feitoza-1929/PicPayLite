@@ -1,0 +1,31 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: action/checkout@v3
+      
+      - name: Setup .NET
+        uses: action/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
+      
+      - name: Restore
+        run: dotnet restore ./PicPayLite.csproj
+      
+      - name: Build
+        run: dotnet build ./PicPayLite.csproj --configuration Release --no-restore
+      
+      - name: Publish
+        run: dotnet publish ./PicPayLite.csproj --configuration Release --no-build
+    
+  
+    
