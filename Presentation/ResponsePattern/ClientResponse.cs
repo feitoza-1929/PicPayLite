@@ -9,8 +9,7 @@ namespace PicPayLite.Presentation.ResponsePattern
         public string Name { get; private set; }
         public string Email { get; private set; }
         public ClientType Type { get; private set; }
-        public string DocumentValue { get; private set; }
-        public DocumentType DocumentType { get; private set; }
+        public Document Document { get; private set; }
 
         private ClientResponse(
             Guid id,
@@ -23,8 +22,8 @@ namespace PicPayLite.Presentation.ResponsePattern
             Name = name;
             Email = email;
             Type = type;
-            DocumentValue = documentValue;
-            DocumentType = documentType;
+            Document = new(documentType, documentValue);
+           
         }
 
         public static ClientResponse Create(Client client)
