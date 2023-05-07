@@ -198,3 +198,5 @@ https://localhost:5048/api/account/66288118087
 - [ ]  Implement send email service to handle a successfully transfer result
 - [ ]  Concurrency problem
 - [ ]  Improve request perfomance with caching
+- [ ]  Implement currency conversion
+- [ ]  Deploy application
