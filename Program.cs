@@ -58,6 +58,8 @@ builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
 
 var app = builder.Build();
 
+DatabaseManagement.MigrationInitialisation(app);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
