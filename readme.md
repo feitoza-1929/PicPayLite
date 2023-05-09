@@ -10,7 +10,7 @@ PicPayLite is a API that mimic the basic behavior of a digital wallet as currenc
 		- [POST/account/create](#POST/account/create)
 		- [POST/account/:accountNumber/balance](#POST/account/:accountNumber/balance)
 		- [GET/account/:clientDocument](#GET/account/:clientDocument)
-	- [Todo](#Todo) 
+- [Todo](#Todo) 
 
 ## Running Application With Docker
 To run the application with Docker you gonna need [Docker](https://docs.docker.com/desktop/install/windows-install/) installed in your computer and Docker-Compose. After that in the root directory of the project you gonna type into your terminal
