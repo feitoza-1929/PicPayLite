@@ -192,6 +192,7 @@ https://localhost:5048/api/account/66288118087
 ```
 
 ### Todo
+- [ ]  Implement soft delete behavior
 - [ ]  GET client by id endpoint
 - [ ]  PATCH deactivate account endpoint
 - [ ]  Improve some error messages and validation
