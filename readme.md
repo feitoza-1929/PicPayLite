@@ -192,11 +192,11 @@ https://localhost:5048/api/account/66288118087
 ```
 
 ### Todo
--[ ] Change to Onion architecture, separating into projects
--[ ] Create an extension method to services configuration in the program file
--[ ] Create a repositories manager
--[ ] Create services manager
--[ ] Create email and SMS notification service
--[ ] Implement cached repositories with Redis
--[ ] Implement notification pattern to handle expected errors and successful
--[ ] Add DTOs
+- [ ] Change to Onion architecture, separating into projects
+- [ ] Create an extension method to services configuration in the program file
+- [ ] Create a repositories manager
+- [ ] Create services manager
+- [ ] Create email and SMS notification service
+- [ ] Implement cached repositories with Redis
+- [ ] Implement notification pattern to handle expected errors and successful
+- [ ] Add DTOs
