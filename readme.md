@@ -192,12 +192,11 @@ https://localhost:5048/api/account/66288118087
 ```
 
 ### Todo
-- [ ]  Implement soft delete behavior
-- [ ]  GET client by id endpoint
-- [ ]  PATCH deactivate account endpoint
-- [ ]  Improve some error messages and validation
-- [ ]  Implement send email service to handle a successfully transfer result
-- [ ]  Concurrency problem
-- [ ]  Improve request perfomance with caching
-- [ ]  Implement currency conversion
-- [ ]  Deploy application
+-[ ] Change to Onion architecture, separating into projects
+-[ ] Create an extension method to services configuration in the program file
+-[ ] Create a repositories manager
+-[ ] Create services manager
+-[ ] Create email and SMS notification service
+-[ ] Implement cached repositories with Redis
+-[ ] Implement notification pattern to handle expected errors and successful
+-[ ] Add DTOs
