@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/feitoza/Sources/projects/PicPayLite/PicPayLite.csproj": {}
+    "/home/feitoza/Sources/personal_projects/PicPayLite/PicPayLite.csproj": {}
   },
   "projects": {
-    "/home/feitoza/Sources/projects/PicPayLite/PicPayLite.csproj": {
+    "/home/feitoza/Sources/personal_projects/PicPayLite/PicPayLite.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/feitoza/Sources/projects/PicPayLite/PicPayLite.csproj",
+        "projectUniqueName": "/home/feitoza/Sources/personal_projects/PicPayLite/PicPayLite.csproj",
         "projectName": "PicPayLite",
-        "projectPath": "/home/feitoza/Sources/projects/PicPayLite/PicPayLite.csproj",
+        "projectPath": "/home/feitoza/Sources/personal_projects/PicPayLite/PicPayLite.csproj",
         "packagesPath": "/home/feitoza/.nuget/packages/",
-        "outputPath": "/home/feitoza/Sources/projects/PicPayLite/obj/",
+        "outputPath": "/home/feitoza/Sources/personal_projects/PicPayLite/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/feitoza/.nuget/NuGet/NuGet.Config"
@@ -62,6 +62,14 @@
               "target": "Package",
               "version": "[7.0.5, )"
             },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.3, )"
@@ -90,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/feitoza/.asdf/installs/dotnet-core/7.0.203/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/feitoza/.asdf/installs/dotnet-core/7.0.400/sdk/7.0.400/RuntimeIdentifierGraph.json"
         }
       }
     }

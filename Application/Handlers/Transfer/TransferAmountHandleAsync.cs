@@ -7,18 +7,19 @@ using PicPayLite.Domain.Repositories;
 using PicPayLite.Domain.Tranfers;
 using PicPayLite.Infrastructure;
 using PicPayLite.Infrastructure.API;
+using PicPayLite.Infrastructure.Cache;
 
 namespace PicPayLite.Application.Handlers
 {
     public class TransferAmountHandleAsync : ITransferAmountHandleAsync
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly CachedAccountRepository _accountRepository;
         private readonly ITransferRepository _transferRepository;
         private readonly ApplicationDbContext _dbContext;
         private readonly IAuthorizationTransfer _authorizationTransfer;
 
         public TransferAmountHandleAsync(
-            IAccountRepository accountRepository,
+            CachedAccountRepository accountRepository,
             ITransferRepository transferRepository,
             ApplicationDbContext dbContext,
             IAuthorizationTransfer authorizationTransfer)

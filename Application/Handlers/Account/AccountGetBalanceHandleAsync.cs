@@ -1,29 +1,21 @@
 using FluentResults;
 using PicPayLite.Application.Handlers.Interfaces;
 using PicPayLite.Domain.Accounts;
-using PicPayLite.Domain.Clients;
 using PicPayLite.Domain.Errors;
-using PicPayLite.Domain.Repositories;
 using PicPayLite.Domain.ValueObjects;
-using PicPayLite.Infrastructure;
+using PicPayLite.Infrastructure.Cache;
 
 namespace PicPayLite.Application.Handlers
 {
 
     public class AccountGetBalanceHandleAsync : IAccountGetBalanceHandleAsync
     {
-        private readonly object _dbContext;
-        private readonly IAccountRepository _accountRepository;
-        private readonly IClientRepository _clientRepository;
+        private readonly CachedAccountRepository _accountRepository;
 
         public AccountGetBalanceHandleAsync(
-            IAccountRepository accountRepository,
-            IClientRepository clientRepository,
-            ApplicationDbContext dbContext)
+            CachedAccountRepository accountRepository)
         {
-            _dbContext = dbContext;
-            _accountRepository = accountRepository;
-            _clientRepository = clientRepository;
+            _accountRepository = accountRepository;  
         }
 
         public async Task<Result<Balance>> GetAsync(int accountNumber)

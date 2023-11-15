@@ -4,18 +4,19 @@ using PicPayLite.Domain.Errors;
 using PicPayLite.Domain.Repositories;
 using PicPayLite.Domain.Tranfers;
 using PicPayLite.Infrastructure;
+using PicPayLite.Infrastructure.Cache;
 using PicPayLite.Presentation.RequestsPattern;
 
 namespace PicPayLite.Application.Handlers
 {
     public class TransferCreateHandleAsync : ITransferCreateHandleAsync
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly CachedAccountRepository _accountRepository;
         private readonly ITransferRepository _transferRepository;
         private readonly ApplicationDbContext _dbContext;
 
         public TransferCreateHandleAsync(
-            IAccountRepository accountRepository,
+            CachedAccountRepository accountRepository,
             ITransferRepository transferRepository,
             ApplicationDbContext dbContext)
         {

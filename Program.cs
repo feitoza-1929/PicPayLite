@@ -6,6 +6,7 @@ using PicPayLite.Domain.Repositories;
 using PicPayLite.Infrastructure;
 using PicPayLite.Infrastructure.API;
 using PicPayLite.Infrastructure.Authentication;
+using PicPayLite.Infrastructure.Cache;
 using PicPayLite.Infrastructure.ConfigurationOptionsSetup;
 using PicPayLite.Infrastructure.Options;
 using PicPayLite.Infrastructure.Repositories;
@@ -23,12 +24,18 @@ builder.Services.AddRouting(
 
 // DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(
-    options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+    options => options.UseNpgsql(configuration.GetConnectionString("SqlServer")));
+// Redis
+builder.Services.AddStackExchangeRedisCache(
+    options => options.Configuration = builder.Configuration.GetConnectionString("Redis"));
         
 // Repositories
 builder.Services.AddTransient<IClientRepository, ClientRepository>();
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
 builder.Services.AddTransient<ITransferRepository, TransferRepository>();
+
+// Cached Repositories
+builder.Services.AddTransient<CachedAccountRepository>();
 
 // Handlers
 builder.Services.AddScoped<IClientCreateHandleAsync, ClientCreateHandleAsync>();
